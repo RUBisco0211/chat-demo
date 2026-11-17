@@ -1,0 +1,102 @@
+.nav {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  z-index: 5;
+  display: flex;
+  max-height: min(72%, 460px);
+  transform: translateY(-50%);
+}
+
+/* 默认只显示刻度，悬停或键盘聚焦时展开为文本面板 */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-sizing: border-box;
+  max-height: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 12px;
+  scrollbar-width: none;
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.nav:hover .list,
+.nav:focus-within .list {
+  background-color: var(--dsw-specific-menu);
+  box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.2),
+    0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 3px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--dsw-alias-label-primary);
+  }
+}
+
+.label {
+  max-width: 0;
+  margin-left: auto;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition:
+    max-width 0.2s ease,
+    opacity 0.15s ease;
+}
+
+.nav:hover .label,
+.nav:focus-within .label {
+  max-width: 200px;
+  opacity: 1;
+}
+
+.mark {
+  flex: none;
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--dsw-alias-border-l3);
+  transition:
+    width 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.active {
+  color: var(--dsw-alias-brand-primary);
+
+  & .mark {
+    width: 20px;
+    background-color: var(--dsw-alias-brand-primary);
+  }
+}
+
+/* 窄屏下会压到正文，直接隐藏 */
+@media not all and (min-width: 1100px) {
+  .nav {
+    display: none;
+  }
+}

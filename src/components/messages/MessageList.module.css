@@ -1,3 +1,10 @@
+.viewport {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
 .container {
   flex: 1;
   min-height: 0;

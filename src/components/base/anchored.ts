@@ -128,6 +128,14 @@ export const useAnchoredPosition = <T extends HTMLElement, F extends HTMLElement
     if (!anchor || !floating) {
       return
     }
+    /*
+     * 触发元素可能在浮层打开期间被隐藏：例如侧边栏会话行的操作按钮只在悬停时 display: flex，
+     * 鼠标移到浮层上后触发元素失去盒子。此时按零矩形继续摆放会把浮层甩到视口左上角，
+     * 所以没有盒子时保留上一次的位置。
+     */
+    if (anchor.getClientRects().length === 0) {
+      return
+    }
     const rect = anchor.getBoundingClientRect()
     const spaceAbove = rect.top - offset - VIEWPORT_PADDING
     const spaceBelow = window.innerHeight - rect.bottom - offset - VIEWPORT_PADDING

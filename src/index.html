@@ -4,7 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
-    <title>API 使用 demo</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      // 会话地址形如 /chat/<id>，页面里的相对资源路径要按应用根目录解析；file:// 打开时保持相对路径
+      if (location.protocol !== 'file:') {
+        var path = location.pathname
+        var chat = path.indexOf('/chat/')
+        var base = document.createElement('base')
+        base.href = chat >= 0 ? path.slice(0, chat + 1) : path.slice(0, path.lastIndexOf('/') + 1)
+        document.head.appendChild(base)
+      }
+    </script>
+    <title>DeepSeek Chat</title>
   </head>
   <body>
     <div id="root"></div>

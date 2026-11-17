@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslate } from '../i18n/index.js'
 import { useSettings } from '../services/settings.js'
 import { useIsMobile, useMobileViewport, usePreventPageScroll } from './viewport.js'
+import { useSessionRoute } from './useSessionRoute.js'
 import {
   bindChatPersistence,
   initChat,
@@ -51,6 +52,7 @@ export const App = () => {
   const activeId = useChatStore((state) => state.activeId)
 
   usePreventPageScroll(isMobile)
+  useSessionRoute()
 
   useEffect(() => {
     document.documentElement.lang = locale

@@ -23,14 +23,12 @@
 }
 
 .appName {
+  display: flex;
+  align-items: center;
   min-width: 0;
   padding-left: 4px;
   overflow: hidden;
-  font-size: 20px;
-  line-height: 22px;
-  font-weight: 600;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  /* 品牌标识跟随主题色 */
   color: var(--dsw-alias-brand-primary);
 }
 

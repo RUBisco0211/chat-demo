@@ -3,9 +3,11 @@ dist/
 build/
 .pnpm-store/
 .cache/
+.vercel/
 *.log
 .DS_Store
 .env
 .env.*
 !.env.example
 tmp/
+.pi/
